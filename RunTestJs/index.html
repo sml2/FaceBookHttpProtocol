@@ -7,7 +7,12 @@
 <body>
     <h1>FaceBook</h1>
     <hr>
-    <h2 id="sign"></h2>
+    <h3 id="sign"></h3>
+
+    Public Key：<input type="text" id="publicKey" value="78323b4132672c71b4f79ae32341f0979b9bbcbf6def1852447a6b07d9645835" style="width: 500px;" />
+    <br>
+    Key ID：<input type="text" id="keyId" value="201" />
+    <br>
     密码：<input type="text" id="passwd" value="Fb0000" />
     <br>
     时间戳：<input type="text" id="time" value="" />
@@ -21,8 +26,18 @@
     window.onload = function (){
         document.getElementById('time').value = parseInt((new Date()).getTime() / 1e3);
     }
-    fbEncrypt();
+    // fbEncrypt();
     function generate(){
+      let publicKey = document.getElementById('publicKey').value;
+      if(!publicKey.length){
+        alert('请输入Public Key');
+        return false;
+      }
+      let keyId = document.getElementById('keyId').value;
+      if(!keyId.length){
+        alert('请输入Key ID');
+        return false;
+      }
         let passwd = document.getElementById('passwd').value;
         if(!passwd.length){
             alert('请输入密码');
@@ -33,9 +48,10 @@
             alert('请输入时间戳');
             return false;
         }
-        let str = fbEncrypt();
-        console.log(str);
-        document.getElementById('sign').innerText = str
+        fbEncrypt(publicKey, keyId, passwd, time).then(s => {
+          document.getElementById('sign').innerText = s
+        });
+        // console.log(str);
     }
 </script>
 </html>
