@@ -37,7 +37,7 @@ function fbEncrypt() {
         additionalData: DecodeTime,
         tagLen: o
     };
-    let str = cry.subtle.generateKey(AesGcmConfig8, true, ["encrypt", "decrypt"]).then(function (a) {
+    return cry.subtle.generateKey(AesGcmConfig8, true, ["encrypt", "decrypt"]).then(function (a) {
         var c = cry.subtle.exportKey("raw", a);
         a = cry.subtle.encrypt(AesGcmConfig12, a, DecodePassWord.buffer);
         return Promise.all([c, a])
@@ -61,7 +61,6 @@ function fbEncrypt() {
         t.set(a, u);
         u += o;
         t.set(b, u);
-
         v = [prefix, g, Time, encodeBase64(t)].join(":")
         console.log(v);
     });

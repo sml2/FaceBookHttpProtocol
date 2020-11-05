@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FaceBook</title>
+</head>
+<body>
+    <h1>FaceBook</h1>
+    <hr>
+    <h2 id="sign"></h2>
+    密码：<input type="text" id="passwd" value="Fb0000" />
+    <br>
+    时间戳：<input type="text" id="time" value="" />
+    <br>
+    <button onclick="generate()">生成</button>
+</body>
+<script src="https://tweetnacl.js.org/nacl.min.js"></script>
+<script src="sealedbox.web.js"></script>
+<script src="test.js"></script>
+<script>
+    window.onload = function (){
+        document.getElementById('time').value = parseInt((new Date()).getTime() / 1e3);
+    }
+    fbEncrypt();
+    function generate(){
+        let passwd = document.getElementById('passwd').value;
+        if(!passwd.length){
+            alert('请输入密码');
+            return false;
+        }
+        let time = document.getElementById('time').value;
+        if(!time.length){
+            alert('请输入时间戳');
+            return false;
+        }
+        let str = fbEncrypt();
+        console.log(str);
+        document.getElementById('sign').innerText = str
+    }
+</script>
+</html>
