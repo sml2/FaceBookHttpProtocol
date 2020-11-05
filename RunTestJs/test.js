@@ -1,13 +1,9 @@
-function fbEncrypt() {
-    let publicKey, prefix, g, DecodePassWord, DecodeTime, Time, keyId;
-    publicKey = '78323b4132672c71b4f79ae32341f0979b9bbcbf6def1852447a6b07d9645835';
+function fbEncrypt(publicKey, keyId, DecodePassWord, Time) {
+    let prefix, g;
     prefix = "#PWD_BROWSER";
     g = 5;
-    keyId = 201;
-    DecodePassWord = decodeUTF8('Fb0000');
-    // Time = parseInt((new Date()).getTime() / 1e3).toString()
-    Time = '1604552956'
-    DecodeTime = decodeUTF8(Time);
+    DecodePassWord = decodeUTF8(DecodePassWord);
+    let DecodeTime = decodeUTF8(Time.toString());
     let cry = window.crypto || window.msCrypto,
         AesGcmConfig8,
         AesGcmConfig12,
@@ -62,7 +58,7 @@ function fbEncrypt() {
         u += o;
         t.set(b, u);
         v = [prefix, g, Time, encodeBase64(t)].join(":")
-        console.log(v);
+        return v
     });
 }
 
