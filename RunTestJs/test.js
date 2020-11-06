@@ -38,9 +38,13 @@ function fbEncrypt(publicKey, keyId, DecodePassWord, Time) {
         a = cry.subtle.encrypt(AesGcmConfig12, a, DecodePassWord.buffer);
         return Promise.all([c, a])
     }).then(function (a) {
-        let b = new Uint8Array(a[0]);
-        let s = r(publicKey)
-        b = sealedBox.seal(b, s)
+        let AesKey = a[0];
+        let AesData = a[1];
+        let JS_AesKey = new Uint8Array(AesKey);
+        let JS_publicKey = r(publicKey)
+        //16 32
+        b = sealedBox.seal(JS_AesKey, JS_publicKey)
+        console.log(b);
         t[u] = b.length & 255;
         t[u + 1] = b.length >> 8 & 255;
         u += m;
@@ -51,7 +55,7 @@ function fbEncrypt(publicKey, keyId, DecodePassWord, Time) {
             console.log("encrypted key is the wrong length");
             return false;
         }
-        b = new Uint8Array(a[1]);
+        b = new Uint8Array(AesData);
         a = b.slice(-o);
         b = b.slice(0, -o);
         t.set(a, u);

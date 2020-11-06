@@ -126,7 +126,7 @@
             var t = i.a.blake2bInit(o.a.box.nonceLength, null);
             return i.a.blake2bUpdate(t, e), i.a.blake2bUpdate(t, n), i.a.blake2bFinal(t)
         }
-
+                   aes16,public32 
         function l(e, n) {
             var t = new Uint8Array(a + e.length), r = o.a.box.keyPair();
             t.set(r.publicKey);
