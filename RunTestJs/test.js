@@ -19,10 +19,10 @@ function fbEncrypt(publicKey, keyId, DecodePassWord, Time) {
         f = p + DecodePassWord.length
     let t = new Uint8Array(f);
     let u = 0;
-    t[u] = i;
-    u += j;
-    t[u] = keyId;
-    u += k;
+    t[u] = i;//u=0 v=1
+    u += j;//u=1 
+    t[u] = keyId;//u=1 v=keyid
+    u += k;//u=2 
     AesGcmConfig8 = {
         name: "AES-GCM",
         length: n * 8
@@ -45,12 +45,12 @@ function fbEncrypt(publicKey, keyId, DecodePassWord, Time) {
         //16 32
         b = sealedBox.seal(JS_AesKey, JS_publicKey)
         console.log(b);
-        t[u] = b.length & 255;
-        t[u + 1] = b.length >> 8 & 255;
-        u += m;
+        t[u] = b.length & 255;//u=2 v=b.length & 255
+        t[u + 1] = b.length >> 8 & 255; //u=2 v=b.length >> 8 & 255
+        u += m;//u=4
         t.set(b, u);
-        u += n;
-        u += l;
+        u += n;//u=36
+        u += l;//u=84
         if (b.length !== n + l) {
             console.log("encrypted key is the wrong length");
             return false;
@@ -59,7 +59,7 @@ function fbEncrypt(publicKey, keyId, DecodePassWord, Time) {
         a = b.slice(-o);
         b = b.slice(0, -o);
         t.set(a, u);
-        u += o;
+        u += o;//u=100
         t.set(b, u);
         v = [prefix, g, Time, encodeBase64(t)].join(":")
         return v
