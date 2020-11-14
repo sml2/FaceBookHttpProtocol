@@ -1,0 +1,8 @@
+D:\lib\cs\websocketNet\websocketNet\websocketNet\bin\Debug\websocketNet.exe
+D:\lib\cs\websocketNet\websocketNet\websocketNet\bin\Debug\websocketNet.pdb
+D:\lib\cs\websocketNet\websocketNet\websocketNet\bin\Debug\websocket-sharp.dll
+D:\lib\cs\websocketNet\websocketNet\websocketNet\obj\Debug\websocketNet.csprojAssemblyReference.cache
+D:\lib\cs\websocketNet\websocketNet\websocketNet\obj\Debug\websocketNet.csproj.CoreCompileInputs.cache
+D:\lib\cs\websocketNet\websocketNet\websocketNet\obj\Debug\websocketNet.csproj.CopyComplete
+D:\lib\cs\websocketNet\websocketNet\websocketNet\obj\Debug\websocketNet.exe
+D:\lib\cs\websocketNet\websocketNet\websocketNet\obj\Debug\websocketNet.pdb
