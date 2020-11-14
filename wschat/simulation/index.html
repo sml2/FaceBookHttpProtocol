@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button onclick="link()">连接ws</button>&nbsp;
+<button onclick="ping()">ping</button>
+<br>
+
+<input id="message" value=""/>
+<button onclick="doSend()">发送</button>
+<br>
+
+<div id="content"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    function link() {
+        startWebSocket('ws://127.0.0.1:10000').then(ws => {
+
+        })
+    }
+</script>
+</html>

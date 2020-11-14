@@ -1,0 +1,1645 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>nanoFramework.M2Mqtt</name>
+    </assembly>
+    <members>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientException">
+            <summary>
+                MQTT client exception
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientException.#ctor(uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="errorCode">Error code</param>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientException.ErrorCode">
+            <summary>
+                Error code
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode">
+            <summary>
+                MQTT client erroro code
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.WillWrong">
+            <summary>
+                Will error (topic, message or QoS level)
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.KeepAliveWrong">
+            <summary>
+                Keep alive period too large
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.TopicWildcard">
+            <summary>
+                Topic contains wildcards
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.TopicLength">
+            <summary>
+                Topic length wrong
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.QosNotAllowed">
+            <summary>
+                QoS level not allowed
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.TopicsEmpty">
+            <summary>
+                Topics list empty for subscribe
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.QosLevelsEmpty">
+            <summary>
+                Qos levels list empty for subscribe
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.TopicsQosLevelsNotMatch">
+            <summary>
+                Topics / Qos Levels not match in subscribe
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.WrongBrokerMessage">
+            <summary>
+                Wrong message from broker
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.WrongMessageId">
+            <summary>
+                Wrong Message Id
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.InflightQueueFull">
+            <summary>
+                Inflight queue is full
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.InvalidFlagBits">
+            <summary>
+                Invalid flag bits received
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.InvalidConnectFlags">
+            <summary>
+                Invalid connect flags received
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.InvalidClientId">
+            <summary>
+                Invalid client id
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientErrorCode.InvalidProtocolName">
+            <summary>
+                Invalid protocol name
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Exceptions.MqttCommunicationException">
+            <summary>
+                Exception due to error communication with broker on socket
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Exceptions.MqttCommunicationException.#ctor">
+            <summary>
+                Default constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Exceptions.MqttCommunicationException.#ctor(System.Exception)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="e">Inner Exception</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Exceptions.MqttConnectionException">
+            <summary>
+                Connection to the broker exception
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Exceptions.MqttConnectionException.#ctor(System.String,System.Exception)">
+            <summary>
+                Connection to the broker exception
+            </summary>
+            <param name="message">A friendly message of the exception that occured</param>
+            <param name="innerException">Detail on why the exception occured</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Exceptions.MqttTimeoutException">
+            <summary>
+                Timeout on receiving from broker exception
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel">
+            <summary>
+                Interface for channel under MQTT library
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.DataAvailable">
+            <summary>
+                Data available on channel
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.Receive(System.Byte[])">
+            <summary>
+                Receive data from the network channel
+            </summary>
+            <param name="buffer">Data buffer for receiving data</param>
+            <returns>Number of bytes received</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.Receive(System.Byte[],System.Int32)">
+            <summary>
+                Receive data from the network channel with a specified timeout
+            </summary>
+            <param name="buffer">Data buffer for receiving data</param>
+            <param name="timeout">Timeout on receiving (in milliseconds)</param>
+            <returns>Number of bytes received</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.Send(System.Byte[])">
+            <summary>
+                Send data on the network channel to the broker
+            </summary>
+            <param name="buffer">Data buffer to send</param>
+            <returns>Number of byte sent</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.Close">
+            <summary>
+                Close the network channel
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.Connect">
+            <summary>
+                Connect to remote server
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel.Accept">
+            <summary>
+                Accept client connection
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Internal.InternalEvent">
+            <summary>
+                Generic internal event for dispatching
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Internal.MsgInternalEvent">
+            <summary>
+                Internal event with a message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Internal.MsgInternalEvent.Message">
+            <summary>
+                Related message
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Internal.MsgInternalEvent.#ctor(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="msg">Related message</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Internal.MsgPublishedInternalEvent">
+            <summary>
+                Internal event for a published message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Internal.MsgPublishedInternalEvent.IsPublished">
+            <summary>
+                Message published (or failed due to retries)
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Internal.MsgPublishedInternalEvent.#ctor(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase,System.Boolean)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="msg">Message published</param>
+            <param name="isPublished">Publish flag</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase">
+            <summary>
+                Base class for all MQTT messages
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.Type">
+            <summary>
+                Message type
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.DupFlag">
+            <summary>
+                Duplicate message flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.QosLevel">
+            <summary>
+                Quality of Service level
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.Retain">
+            <summary>
+                Retain message flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.MessageId">
+            <summary>
+                Message identifier for the message
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.GetBytes(System.Byte)">
+            <summary>
+                Returns message bytes rapresentation
+            </summary>
+            <param name="protocolVersion">Protocol version</param>
+            <returns>Bytes rapresentation</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.encodeRemainingLength(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+                Encode remaining length and insert it into message buffer
+            </summary>
+            <param name="remainingLength">Remaining length value to encode</param>
+            <param name="buffer">Message buffer for inserting encoded value</param>
+            <param name="index">Index from which insert encoded value into buffer</param>
+            <returns>Index updated</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase.decodeRemainingLength(uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Decode remaining length reading bytes from socket
+            </summary>
+            <param name="channel">Channel from reading bytes</param>
+            <returns>Decoded remaining length</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnack">
+            <summary>
+                Class for CONNACK message from broker to client
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnack.SessionPresent">
+            <summary>
+                Session present flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnack.ReturnCode">
+            <summary>
+                Return Code
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnack.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnack.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a CONNACK message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>CONNACK message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect">
+            <summary>
+                Class for CONNECT message from client to broker
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.ProtocolName">
+            <summary>
+                Protocol name
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.ProtocolVersion">
+            <summary>
+                Protocol version
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.ClientId">
+            <summary>
+                Client identifier
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.WillRetain">
+            <summary>
+                Will retain flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.WillQosLevel">
+            <summary>
+                Will QOS level
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.WillFlag">
+            <summary>
+                Will flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.WillTopic">
+            <summary>
+                Will topic
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.WillMessage">
+            <summary>
+                Will message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.Username">
+            <summary>
+                Username
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.Password">
+            <summary>
+                Password
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.CleanSession">
+            <summary>
+                Clean session flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.KeepAlivePeriod">
+            <summary>
+                Keep alive period
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.#ctor(System.String)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="clientId">Client identifier</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.#ctor(System.String,System.String,System.String,System.Boolean,System.Byte,System.Boolean,System.String,System.String,System.Boolean,System.UInt16,System.Byte)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="clientId">Client identifier</param>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <param name="willRetain">Will retain flag</param>
+            <param name="willQosLevel">Will QOS level</param>
+            <param name="willFlag">Will flag</param>
+            <param name="willTopic">Will topic</param>
+            <param name="willMessage">Will message</param>
+            <param name="cleanSession">Clean sessione flag</param>
+            <param name="keepAlivePeriod">Keep alive period</param>
+            <param name="protocolVersion">Protocol version</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a CONNECT message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>CONNECT message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnectEventArgs">
+            <summary>
+                Event Args class for CONNECT message received from client
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnectEventArgs.Message">
+            <summary>
+                Message received from client
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnectEventArgs.#ctor(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgConnect)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="msg">CONNECT message received from client</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext">
+            <summary>
+                Context for MQTT message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext.Message">
+            <summary>
+                MQTT message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext.State">
+            <summary>
+                MQTT message state
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext.Flow">
+            <summary>
+                Flow of the message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext.Timestamp">
+            <summary>
+                Timestamp in ticks (for retry)
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext.Attempt">
+            <summary>
+                Attempt (for retry)
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgContext.Key">
+            <summary>
+                Unique key
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgFlow">
+            <summary>
+                Flow of the message
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgFlow.ToPublish">
+            <summary>
+                To publish to subscribers
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgFlow.ToAcknowledge">
+            <summary>
+                To acknowledge to publisher
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState">
+            <summary>
+                MQTT message state
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.QueuedQos0">
+            <summary>
+                QOS = 0, Message queued
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.QueuedQos1">
+            <summary>
+                QOS = 1, Message queued
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.QueuedQos2">
+            <summary>
+                QOS = 2, Message queued
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.WaitForPuback">
+            <summary>
+                QOS = 1, PUBLISH sent, wait for PUBACK
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.WaitForPubrec">
+            <summary>
+                QOS = 2, PUBLISH sent, wait for PUBREC
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.WaitForPubrel">
+            <summary>
+                QOS = 2, PUBREC sent, wait for PUBREL
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.WaitForPubcomp">
+            <summary>
+                QOS = 2, PUBREL sent, wait for PUBCOMP
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.SendPubrec">
+            <summary>
+                QOS = 2, start first phase handshake send PUBREC
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.SendPubrel">
+            <summary>
+                QOS = 2, start second phase handshake send PUBREL
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.SendPubcomp">
+            <summary>
+                QOS = 2, end second phase handshake send PUBCOMP
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.SendPuback">
+            <summary>
+                QOS = 1, PUBLISH received, send PUBACK
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.SendSubscribe">
+            <summary>
+                Send SUBSCRIBE message
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.SendUnsubscribe">
+            <summary>
+                Send UNSUBSCRIBE message
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.WaitForSuback">
+            <summary>
+                (QOS = 1), SUBSCRIBE sent, wait for SUBACK
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgState.WaitForUnsuback">
+            <summary>
+                (QOS = 1), UNSUBSCRIBE sent, wait for UNSUBACK
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgDisconnect">
+            <summary>
+                Class for DISCONNECT message from client to broker
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgDisconnect.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgDisconnect.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a DISCONNECT message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>DISCONNECT message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPingReq">
+            <summary>
+                Class for PINGREQ message from client to broker
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPingReq.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPingReq.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PINGREQ message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PINGREQ message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPingResp">
+            <summary>
+                Class for PINGRESP message from client to broker
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPingResp.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPingResp.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PINGRESP message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PINGRESP message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPuback">
+            <summary>
+                Class for PUBACK message from broker to client
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPuback.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPuback.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PUBACK message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PUBACK message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubcomp">
+            <summary>
+                Class for PUBCOMP message from broker to client
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubcomp.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubcomp.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PUBCOMP message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PUBCOMP message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish">
+            <summary>
+                Class for PUBLISH message from client to broker
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish.Topic">
+            <summary>
+                Message topic
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish.Message">
+            <summary>
+                Message data
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish.#ctor(System.String,System.Byte[])">
+            <summary>
+                Constructor
+            </summary>
+            <param name="topic">Message topic</param>
+            <param name="message">Message data</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish.#ctor(System.String,System.Byte[],System.Boolean,System.Byte,System.Boolean)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="topic">Message topic</param>
+            <param name="message">Message data</param>
+            <param name="dupFlag">Duplicate flag</param>
+            <param name="qosLevel">Quality of Service level</param>
+            <param name="retain">Retain flag</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PUBLISH message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PUBLISH message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs">
+            <summary>
+                Event Args class for published message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs.MessageId">
+            <summary>
+                Message identifier
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs.IsPublished">
+            <summary>
+                Message published (or failed due to retries)
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs.#ctor(System.UInt16)">
+            <summary>
+                Constructor (published message)
+            </summary>
+            <param name="messageId">Message identifier published</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishedEventArgs.#ctor(System.UInt16,System.Boolean)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="messageId">Message identifier</param>
+            <param name="isPublished">Publish flag</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs">
+            <summary>
+                Event Args class for PUBLISH message received from broker
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs.Topic">
+            <summary>
+                Message topic
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs.Message">
+            <summary>
+                Message data
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs.DupFlag">
+            <summary>
+                Duplicate message flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs.QosLevel">
+            <summary>
+                Quality of Service level
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs.Retain">
+            <summary>
+                Retain message flag
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublishEventArgs.#ctor(System.String,System.Byte[],System.Boolean,System.Byte,System.Boolean)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="topic">Message topic</param>
+            <param name="message">Message data</param>
+            <param name="dupFlag">Duplicate delivery flag</param>
+            <param name="qosLevel">Quality of Service level</param>
+            <param name="retain">Retain flag</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubrec">
+            <summary>
+                Class for PUBREC message from broker to client
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubrec.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubrec.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PUBREC message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PUBREC message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubrel">
+            <summary>
+                Class for PUBREL message from client top broker
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubrel.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPubrel.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a PUBREL message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>PUBREL message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSuback">
+            <summary>
+                Class for SUBACK message from broker to client
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSuback.GrantedQoSLevels">
+            <summary>
+                List of granted QOS Levels
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSuback.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSuback.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a SUBACK message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>SUBACK message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribe">
+            <summary>
+                Class for SUBSCRIBE message from client to broker
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribe.Topics">
+            <summary>
+                List of topics to subscribe
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribe.QoSLevels">
+            <summary>
+                List of QOS Levels related to topics
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribe.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribe.#ctor(System.String[],System.Byte[])">
+            <summary>
+                Constructor
+            </summary>
+            <param name="topics">List of topics to subscribe</param>
+            <param name="qosLevels">List of QOS Levels related to topics</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribe.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a SUBSCRIBE message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>SUBSCRIBE message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribedEventArgs">
+            <summary>
+                Event Args class for subscribed topics
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribedEventArgs.MessageId">
+            <summary>
+                Message identifier
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribedEventArgs.GrantedQoSLevels">
+            <summary>
+                List of granted QOS Levels
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribedEventArgs.#ctor(System.UInt16,System.Byte[])">
+            <summary>
+                Constructor
+            </summary>
+            <param name="messageId">Message identifier for subscribed topics</param>
+            <param name="grantedQosLevels">List of granted QOS Levels</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribeEventArgs">
+            <summary>
+                Event Args class for subscribe request on topics
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribeEventArgs.MessageId">
+            <summary>
+                Message identifier
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribeEventArgs.Topics">
+            <summary>
+                Topics requested to subscribe
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribeEventArgs.QoSLevels">
+            <summary>
+                List of QOS Levels requested
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSubscribeEventArgs.#ctor(System.UInt16,System.String[],System.Byte[])">
+            <summary>
+                Constructor
+            </summary>
+            <param name="messageId">Message identifier for subscribe topics request</param>
+            <param name="topics">Topics requested to subscribe</param>
+            <param name="qosLevels">List of QOS Levels requested</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsuback">
+            <summary>
+                Class for UNSUBACK message from broker to client
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsuback.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsuback.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a UNSUBACK message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>UNSUBACK message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribe">
+            <summary>
+                Class for UNSUBSCRIBE message from client to broker
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribe.Topics">
+            <summary>
+                List of topics to unsubscribe
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribe.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribe.#ctor(System.String[])">
+            <summary>
+                Constructor
+            </summary>
+            <param name="topics">List of topics to unsubscribe</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribe.Parse(System.Byte,System.Byte,uPLibrary.Networking.M2Mqtt.IMqttNetworkChannel)">
+            <summary>
+                Parse bytes for a UNSUBSCRIBE message
+            </summary>
+            <param name="fixedHeaderFirstByte">First fixed header byte</param>
+            <param name="protocolVersion">Protocol Version</param>
+            <param name="channel">Channel connected to the broker</param>
+            <returns>UNSUBSCRIBE message instance</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribedEventArgs">
+            <summary>
+                Event Args class for unsubscribed topic
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribedEventArgs.MessageId">
+            <summary>
+                Message identifier
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribedEventArgs.#ctor(System.UInt16)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="messageId">Message identifier for unsubscribed topic</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribeEventArgs">
+            <summary>
+                Event Args class for unsubscribe request on topics
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribeEventArgs.MessageId">
+            <summary>
+                Message identifier
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribeEventArgs.Topics">
+            <summary>
+                Topics requested to subscribe
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Messages.MqttMsgUnsubscribeEventArgs.#ctor(System.UInt16,System.String[])">
+            <summary>
+                Constructor
+            </summary>
+            <param name="messageId">Message identifier for subscribed topics</param>
+            <param name="topics">Topics requested to subscribe</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient">
+            <summary>
+                MQTT Client
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishEventHandler">
+            <summary>
+                Delagate that defines event handler for PUBLISH message received
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishedEventHandler">
+            <summary>
+                Delegate that defines event handler for published message
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgSubscribedEventHandler">
+            <summary>
+                Delagate that defines event handler for subscribed topic
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgUnsubscribedEventHandler">
+            <summary>
+                Delagate that defines event handler for unsubscribed topic
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient.ConnectionClosedEventHandler">
+            <summary>
+                Delegate that defines event handler for cliet/peer disconnection
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.IsConnected">
+            <summary>
+                Connection status between client and broker
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.ClientId">
+            <summary>
+                Client identifier
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.CleanSession">
+            <summary>
+                Clean session flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.WillFlag">
+            <summary>
+                Will flag
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.WillQosLevel">
+            <summary>
+                Will QOS level
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.WillTopic">
+            <summary>
+                Will topic
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.WillMessage">
+            <summary>
+                Will message
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.ProtocolVersion">
+            <summary>
+                MQTT protocol version
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttClient.Settings">
+            <summary>
+                MQTT client settings
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.#ctor(System.Net.IPAddress)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="brokerIpAddress">Broker IP address</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.#ctor(System.Net.IPAddress,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate,uPLibrary.Networking.M2Mqtt.MqttSslProtocols)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="brokerIpAddress">Broker IP address</param>
+            <param name="brokerPort">Broker port</param>
+            <param name="secure">Using secure connection</param>
+            <param name="caCert">CA certificate for secure connection</param>
+            <param name="clientCert">Client certificate</param>
+            <param name="sslProtocol">SSL/TLS protocol version</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.#ctor(System.String)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="brokerHostName">Broker Host Name or IP Address</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.#ctor(System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate,uPLibrary.Networking.M2Mqtt.MqttSslProtocols)">
+            <param name="caCert">CA certificate for secure connection</param>
+            <param name="clientCert">Client certificate</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Init(System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate,uPLibrary.Networking.M2Mqtt.MqttSslProtocols)">
+            <summary>
+                MqttClient initialization
+            </summary>
+            <param name="brokerHostName">Broker Host Name or IP Address</param>
+            <param name="brokerPort">Broker port</param>
+            <param name="secure">>Using secure connection</param>
+            <param name="caCert">CA certificate for secure connection</param>
+            <param name="clientCert">Client certificate</param>
+            <param name="sslProtocol">SSL/TLS protocol version</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Connect(System.String)">
+            <summary>
+                Connect to broker
+            </summary>
+            <param name="clientId">Client identifier</param>
+            <returns>Return code of CONNACK message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Connect(System.String,System.Boolean)">
+            <summary>
+                Connect to broker
+            </summary>
+            <param name="clientId">Client identifier</param>
+            <param name="cleanSession">Clean sessione flag</param>
+            <returns>Return code of CONNACK message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Connect(System.String,System.String,System.String)">
+            <summary>
+                Connect to broker
+            </summary>
+            <param name="clientId">Client identifier</param>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <returns>Return code of CONNACK message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Connect(System.String,System.String,System.String,System.Boolean,System.UInt16)">
+            <summary>
+                Connect to broker
+            </summary>
+            <param name="clientId">Client identifier</param>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <param name="cleanSession">Clean sessione flag</param>
+            <param name="keepAlivePeriod">Keep alive period</param>
+            <returns>Return code of CONNACK message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Connect(System.String,System.String,System.String,System.Boolean,System.Byte,System.Boolean,System.String,System.String,System.Boolean,System.UInt16)">
+            <summary>
+                Connect to broker
+            </summary>
+            <param name="clientId">Client identifier</param>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <param name="willRetain">Will retain flag</param>
+            <param name="willQosLevel">Will QOS level</param>
+            <param name="willFlag">Will flag</param>
+            <param name="willTopic">Will topic</param>
+            <param name="willMessage">Will message</param>
+            <param name="cleanSession">Clean sessione flag</param>
+            <param name="keepAlivePeriod">Keep alive period</param>
+            <returns>Return code of CONNACK message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Disconnect">
+            <summary>
+                Disconnect from broker
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Close">
+            <summary>
+                Close client
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Ping">
+            <summary>
+                Execute ping to broker for keep alive
+            </summary>
+            <returns>PINGRESP message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Subscribe(System.String[],System.Byte[])">
+            <summary>
+                Subscribe for message topics
+            </summary>
+            <param name="topics">List of topics to subscribe</param>
+            <param name="qosLevels">QOS levels related to topics</param>
+            <returns>Message Id related to SUBSCRIBE message</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Unsubscribe(System.String[])">
+            <summary>
+                Unsubscribe for message topics
+            </summary>
+            <param name="topics">List of topics to unsubscribe</param>
+            <returns>Message Id in UNSUBACK message from broker</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Publish(System.String,System.Byte[])">
+            <summary>
+                Publish a message asynchronously (QoS Level 0 and not retained)
+            </summary>
+            <param name="topic">Message topic</param>
+            <param name="message">Message data (payload)</param>
+            <returns>Message Id related to PUBLISH message</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Publish(System.String,System.Byte[],System.Byte,System.Boolean)">
+            <summary>
+                Publish a message asynchronously
+            </summary>
+            <param name="topic">Message topic</param>
+            <param name="message">Message data (payload)</param>
+            <param name="qosLevel">QoS Level</param>
+            <param name="retain">Retain flag</param>
+            <returns>Message Id related to PUBLISH message</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnInternalEvent(uPLibrary.Networking.M2Mqtt.Internal.InternalEvent)">
+            <summary>
+                Wrapper method for raising events
+            </summary>
+            <param name="internalEvent">Internal event</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnConnectionClosing">
+            <summary>
+                Wrapper method for raising closing connection event
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnMqttMsgPublishReceived(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgPublish)">
+            <summary>
+                Wrapper method for raising PUBLISH message received event
+            </summary>
+            <param name="publish">PUBLISH message received</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnMqttMsgPublished(System.UInt16,System.Boolean)">
+            <summary>
+                Wrapper method for raising published message event
+            </summary>
+            <param name="messageId">Message identifier for published message</param>
+            <param name="isPublished">Publish flag</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnMqttMsgSubscribed(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgSuback)">
+            <summary>
+                Wrapper method for raising subscribed topic event
+            </summary>
+            <param name="suback">SUBACK message received</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnMqttMsgUnsubscribed(System.UInt16)">
+            <summary>
+                Wrapper method for raising unsubscribed topic event
+            </summary>
+            <param name="messageId">Message identifier for unsubscribed topic</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.OnConnectionClosed">
+            <summary>
+                Wrapper method for peer/client disconnection
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Send(System.Byte[])">
+            <summary>
+                Send a message
+            </summary>
+            <param name="msgBytes">Message bytes</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.Send(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase)">
+            <summary>
+                Send a message
+            </summary>
+            <param name="msg">Message</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.SendReceive(System.Byte[])">
+            <summary>
+                Send a message to the broker and wait answer
+            </summary>
+            <param name="msgBytes">Message bytes</param>
+            <returns>MQTT message response</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.SendReceive(System.Byte[],System.Int32)">
+            <summary>
+                Send a message to the broker and wait answer
+            </summary>
+            <param name="msgBytes">Message bytes</param>
+            <param name="timeout">Timeout for receiving answer</param>
+            <returns>MQTT message response</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.SendReceive(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase)">
+            <summary>
+                Send a message to the broker and wait answer
+            </summary>
+            <param name="msg">Message</param>
+            <returns>MQTT message response</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.SendReceive(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase,System.Int32)">
+            <summary>
+                Send a message to the broker and wait answer
+            </summary>
+            <param name="msg">Message</param>
+            <param name="timeout">Timeout for receiving answer</param>
+            <returns>MQTT message response</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.EnqueueInflight(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase,uPLibrary.Networking.M2Mqtt.Messages.MqttMsgFlow)">
+            <summary>
+                Enqueue a message into the inflight queue
+            </summary>
+            <param name="msg">Message to enqueue</param>
+            <param name="flow">Message flow (publish, acknowledge)</param>
+            <returns>Message enqueued or not</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.EnqueueInternal(uPLibrary.Networking.M2Mqtt.Messages.MqttMsgBase)">
+            <summary>
+                Enqueue a message into the internal queue
+            </summary>
+            <param name="msg">Message to enqueue</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.ReceiveThread">
+            <summary>
+                Thread for receiving messages
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.KeepAliveThread">
+            <summary>
+                Thread for handling keep alive message
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.DispatchEventThread">
+            <summary>
+                Thread for raising event
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.ProcessInflightThread">
+            <summary>
+                Process inflight messages queue
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.RestoreSession">
+            <summary>
+                Restore session
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.GetMessageId">
+            <summary>
+                Generate the next message identifier
+            </summary>
+            <returns>Message identifier</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgContextFinder">
+            <summary>
+                Finder class for PUBLISH message inside a queue
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgContextFinder.#ctor(System.UInt16,uPLibrary.Networking.M2Mqtt.Messages.MqttMsgFlow)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="messageId">Message Id</param>
+            <param name="flow">Message flow inside inflight queue</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttProtocolVersion">
+            <summary>
+                MQTT protocol version
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttSslProtocols">
+            <summary>
+                Supported SSL/TLS protocol versions
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttSettings">
+            <summary>
+                Settings class for the MQTT broker
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_BROKER_DEFAULT_PORT">
+            <summary>
+                Default port for the MQTT protocol
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_BROKER_DEFAULT_SSL_PORT">
+            <summary>
+                Default SSL port for the MQTT protocol
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_DEFAULT_TIMEOUT">
+            <summary>
+                Default timeout on receiving from client
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_ATTEMPTS_RETRY">
+            <summary>
+                Max publish, subscribe and unsubscribe retry for QoS Level 1 or 2
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_DELAY_RETRY">
+            <summary>
+                Delay for retry publish, subscribe and unsubscribe for QoS Level 1 or 2
+            </summary>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_CONNECT_TIMEOUT">
+            <summary>
+                Connection Timeout
+            </summary>
+            <remarks>
+                The broker needs to receive the first message (CONNECT)
+                within a reasonable amount of time after the initial TCP/IP connection
+            </remarks>
+        </member>
+        <member name="F:uPLibrary.Networking.M2Mqtt.MqttSettings.MQTT_MAX_INFLIGHT_QUEUE_SIZE">
+            <summary>
+                The default inflight queue size
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.Port">
+            <summary>
+                Listening connection port
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.SslPort">
+            <summary>
+                Listening connection SSL port
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.TimeoutOnConnection">
+            <summary>
+                Timeout on client connection (before receiving CONNECT message)
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.TimeoutOnReceiving">
+            <summary>
+                Timeout on receiving
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.AttemptsOnRetry">
+            <summary>
+                Attempts on retry
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.DelayOnRetry">
+            <summary>
+                Delay on retry
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.InflightQueueSize">
+            <summary>
+                Inflight queue size
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttSettings.Instance">
+            <summary>
+                Singleton instance of settings
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttSettings.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Fx">
+            <summary>
+                Support methods fos specific framework
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel">
+            <summary>
+                Channel to communicate over the network
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.RemoteHostName">
+            <summary>
+                Remote host name
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.RemoteIpAddress">
+            <summary>
+                Remote IP address
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.RemotePort">
+            <summary>
+                Remote port
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.DataAvailable">
+            <summary>
+                Data available on the channel
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="socket">Socket opened with the client</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.#ctor(System.Net.Sockets.Socket,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate,uPLibrary.Networking.M2Mqtt.MqttSslProtocols)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="socket">Socket opened with the client</param>
+            <param name="secure">Secure connection (SSL/TLS)</param>
+            <param name="serverCert">Server X509 certificate for secure connection</param>
+            <param name="sslProtocol">SSL/TLS protocol version</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.#ctor(System.String,System.Int32)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="remoteHostName">Remote Host name</param>
+            <param name="remotePort">Remote port</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.#ctor(System.String,System.Int32,System.Boolean,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate,uPLibrary.Networking.M2Mqtt.MqttSslProtocols)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="remoteHostName">Remote Host name</param>
+            <param name="remotePort">Remote port</param>
+            <param name="secure">Using SSL</param>
+            <param name="caCert">CA certificate</param>
+            <param name="clientCert">Client certificate</param>
+            <param name="sslProtocol">SSL/TLS protocol version</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.Connect">
+            <summary>
+                Connect to remote server
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.Send(System.Byte[])">
+            <summary>
+                Send data on the network channel
+            </summary>
+            <param name="buffer">Data buffer to send</param>
+            <returns>Number of byte sent</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.Receive(System.Byte[])">
+            <summary>
+                Receive data from the network
+            </summary>
+            <param name="buffer">Data buffer for receiving data</param>
+            <returns>Number of bytes received</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.Receive(System.Byte[],System.Int32)">
+            <summary>
+                Receive data from the network channel with a specified timeout
+            </summary>
+            <param name="buffer">Data buffer for receiving data</param>
+            <param name="timeout">Timeout on receiving (in milliseconds)</param>
+            <returns>Number of bytes received</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.Close">
+            <summary>
+                Close the network channel
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttNetworkChannel.Accept">
+            <summary>
+                Accept connection from a remote client
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.IPAddressUtility">
+            <summary>
+                IPAddress Utility class
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.IPAddressUtility.GetAddressFamily(System.Net.IPAddress)">
+            <summary>
+                Return AddressFamily for the IP address
+            </summary>
+            <param name="ipAddress">IP address to check</param>
+            <returns>Address family</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.MqttSslUtility">
+            <summary>
+                MQTT SSL utility class
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.MqttSslUtility.ToSslPlatformEnum(uPLibrary.Networking.M2Mqtt.MqttSslProtocols)">
+            <summary>
+                Defines the possible versions of Secure Sockets Layer (SSL).
+            </summary>
+            <remarks>
+                Note: Following the recommendation of the .NET documentation, nanoFramework implementation does not have
+                SSL3 nor Default because those are deprecated and unsecure.
+            </remarks>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Session.MqttClientSession">
+            <summary>
+                MQTT Client Session
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Session.MqttClientSession.#ctor(System.String)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="clientId">Client Id to create session</param>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Session.MqttSession">
+            <summary>
+                MQTT Session base class
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Session.MqttSession.ClientId">
+            <summary>
+                Client Id
+            </summary>
+        </member>
+        <member name="P:uPLibrary.Networking.M2Mqtt.Session.MqttSession.InflightMessages">
+            <summary>
+                Messages inflight during session
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Session.MqttSession.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Session.MqttSession.#ctor(System.String)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="clientId">Client Id to create session</param>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Session.MqttSession.Clear">
+            <summary>
+                Clean session
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Utility.QueueExtension">
+            <summary>
+                Extension class for a Queue
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Utility.QueueExtension.QueuePredicate">
+            <summary>
+                Predicate for searching inside a queue
+            </summary>
+            <param name="item">Item of the queue</param>
+            <returns>Result of predicate</returns>
+        </member>
+        <member name="M:uPLibrary.Networking.M2Mqtt.Utility.QueueExtension.Get(System.Collections.Queue,uPLibrary.Networking.M2Mqtt.Utility.QueueExtension.QueuePredicate)">
+            <summary>
+                Get (without removing) an item from queue based on predicate
+            </summary>
+            <param name="queue">Queue in which to search</param>
+            <param name="predicate">Predicate to verify to get item</param>
+            <returns>Item matches the predicate</returns>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Utility.TraceLevel">
+            <summary>
+                Tracing levels
+            </summary>
+        </member>
+        <member name="T:uPLibrary.Networking.M2Mqtt.Utility.Trace">
+            <summary>
+                Tracing class
+            </summary>
+        </member>
+    </members>
+</doc>
