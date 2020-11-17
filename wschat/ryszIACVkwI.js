@@ -19524,7 +19524,7 @@ __d("MWMSOptimisticUpdate.bs", ["bs_caml_option", "MWChatThreadId.bs", "Messenge
     "use strict";
 
     // @todo make msgid
-    function a(a, c, d, e, f, g, h, i) {
+    function a(a, c, d, e, f, g, h, i) {// userId msg "User"
         var j = b("MercuryMessageObject").getForFBID(a);
         if (e !== void 0) {
             var k = j.constructAttachmentMessageObject(b("MercurySourceType").TITAN_WEB, b("MWChatThreadId.bs").getMercuryID(d), h),

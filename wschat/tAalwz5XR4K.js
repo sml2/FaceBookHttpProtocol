@@ -1623,7 +1623,7 @@ __d("MqttProtocolUtils", ["MqttEnv"], (function (a, b, c, d, e, f) {
             return b
         }
 
-        function j(a, b, c, d) {
+        function j(a, b, c, d) {// msg msgLen array start
             d = h(b, c, d);
             k(a, c, d);
             return d + b
@@ -2042,7 +2042,7 @@ __d("MqttProtocolCodec", ["MqttProtocolUtils", "MqttUtils"], (function (a, b, c,
                 a += c.length;
                 d.set(q, a);
                 a += q.length;
-                c = 2 | 128;
+                c = 2 | 128; // 130
                 d[a++] = c;
                 a = n(this.connectOptions.keepAliveInterval, d, a);
                 a = m(this.clientId, g(this.clientId), d, a);
@@ -2529,6 +2529,7 @@ __d("MqttUserName", ["gkx"], (function (a, b, c, d, e, f) {
             }
 
             var c = a.prototype;
+            // @todo: gen username
             c.gen = function (a, c, d, e) {
                 e === void 0 && (e = []);
                 var f = b("gkx")("1166607") ? !1 : this.$7;
@@ -2609,6 +2610,7 @@ __d("MqttConnection", ["Promise", "MqttConnectionHookCollection", "MqttEnv", "Mq
                 this.$13 = 0;
                 this.$8 = !1;
                 this.$5 = "";
+                // @todo: username
                 this.$6 = new (b("MqttUserName"))("", 0, 1, "", 0, !0);
                 this.$9 = 0;
                 this.$7 = null;
@@ -2773,7 +2775,7 @@ __d("MqttConnection", ["Promise", "MqttConnectionHookCollection", "MqttEnv", "Mq
                     return;
                 this.$29("Connecting");
                 var c = Date.now();
-                this.$9 = b("MqttUtils").generateSessionId();
+                this.$9 = b("MqttUtils").generateSessionId(); // random sid
                 var d = Array.from(this.$14)
                     , e = b("MqttUtils").endpointWithSessionId(this.$5, this.$9);
                 try {
@@ -3097,6 +3099,7 @@ __d("MqttChannel", ["Promise", "requireDeferred", "ChannelClientID", "IrisSubscr
                 a = a === void 0 ? null : a;
                 this.$10 = g.getLoggerInstance();
                 this.$10.setAppId(h);
+                // @todo: username first
                 this.$11 = new (b("MqttUserName"))(f, j, k, b("ChannelClientID").getID(), h, l, a);
                 this.$1 = d;
                 this.$2 = e;
