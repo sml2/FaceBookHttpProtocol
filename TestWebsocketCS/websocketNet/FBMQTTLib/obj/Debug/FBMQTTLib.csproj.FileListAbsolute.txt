@@ -1,0 +1,17 @@
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\obj\Debug\FBMQTTLib.csprojAssemblyReference.cache
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\obj\Debug\FBMQTTLib.csproj.CoreCompileInputs.cache
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\FBMQTTLib.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\FBMQTTLib.pdb
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\MQTTnet.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\Newtonsoft.Json.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\SuperSocket.ClientEngine.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\WebSocket4Net.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\SuperSocket.ProtoBase.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\MQTTnet.pdb
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\SuperSocket.ClientEngine.pdb
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\Newtonsoft.Json.xml
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\SuperSocket.ProtoBase.xml
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\obj\Debug\FBMQTTLib.csproj.CopyComplete
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\obj\Debug\FBMQTTLib.dll
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\obj\Debug\FBMQTTLib.pdb
+D:\www\FaceBookHttpProtocol\TestWebsocketCS\websocketNet\FBMQTTLib\bin\Debug\WebSocket4Net.pdb
